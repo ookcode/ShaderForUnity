@@ -16,6 +16,8 @@ Unity Shader的理论知识
 * 3-Texture
 	* 基础纹理
 	* 切线空间下的凹凸映射
+* 4-PBR
+	* 传统光照和PBR对比
 
 #### Assets/XRay
 游戏中常见的人物被障碍物阻挡后的X光效果
@@ -27,7 +29,14 @@ Unity Shader的理论知识
 ![](README/XRay.png)
 
 #### Assets/Dissolve
-TODO：人物死亡后的溶解效果
+人物死亡后的溶解效果
+
+![](README/Dissolve.png)
+
+#### Assets/Outline
+描边效果
+
+![](README/Outline.png)
 
 #### Assets/Blur
 TODO：常见的几种模糊效果
