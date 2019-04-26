@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Combine : MonoBehaviour {
-    public bool AddRayMaterial = false;
+    public Material addedMat; // 需要添加的材质
+
     void Start () {
 		Transform[] transforms = this.GetComponentsInChildren<Transform>();
 		List<GameObject> targetParts = new List<GameObject>();
@@ -60,15 +61,12 @@ public class Combine : MonoBehaviour {
         tempRenderer.bones = boneList.ToArray();
         
 
-        if(AddRayMaterial) {
-            Mesh XRay = new Mesh();
-            XRay.CombineMeshes(combineInstances.ToArray(), true, false);
-            tempRenderer.sharedMesh.subMeshCount += 1;
-            tempRenderer.sharedMesh.SetTriangles(XRay.GetTriangles(0), tempRenderer.sharedMesh.subMeshCount - 1);
-            materials.Add(new Material(Shader.Find("XRay")));
-        }
+        Mesh mesh = new Mesh();
+        mesh.CombineMeshes(combineInstances.ToArray(), true, false);
+        tempRenderer.sharedMesh.subMeshCount += 1;
+        tempRenderer.sharedMesh.SetTriangles(mesh.GetTriangles(0), tempRenderer.sharedMesh.subMeshCount - 1);
+        materials.Add(addedMat);
         tempRenderer.materials = materials.ToArray();
-
 
         // 销毁所有部件
         foreach (GameObject goTemp in targetParts) {
