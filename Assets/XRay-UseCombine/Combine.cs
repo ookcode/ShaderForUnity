@@ -18,8 +18,7 @@ public class Combine : MonoBehaviour {
         // 遍历所有蒙皮网格渲染器，以计算出所有需要合并的网格、骨骼的信息
         foreach (SkinnedMeshRenderer smr in this.GetComponentsInChildren<SkinnedMeshRenderer>())
         {
-			//if(materials.Count == 0)
-				materials.AddRange(smr.materials);
+            materials.AddRange(smr.materials);
 			targetParts.Add(smr.gameObject);
 
 			// 处理SubMesh
@@ -60,11 +59,11 @@ public class Combine : MonoBehaviour {
         tempRenderer.sharedMesh.CombineMeshes(combineInstances.ToArray(), false, false);
         tempRenderer.bones = boneList.ToArray();
         
-
         Mesh mesh = new Mesh();
         mesh.CombineMeshes(combineInstances.ToArray(), true, false);
         tempRenderer.sharedMesh.subMeshCount += 1;
         tempRenderer.sharedMesh.SetTriangles(mesh.GetTriangles(0), tempRenderer.sharedMesh.subMeshCount - 1);
+        
         materials.Add(addedMat);
         tempRenderer.materials = materials.ToArray();
 

@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Outline
-  m_Shader: {fileID: 4800000, guid: 2b66f44078bda4666a48437c70b544bf, type: 3}
+  m_Shader: {fileID: 4800000, guid: 763c7cf135152634fb42865105bf1cfd, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -65,6 +65,7 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
+    - _OutlineStrength: 0.02
     - _Parallax: 0.02
     - _RimIntensity: 1
     - _SmoothnessTextureChannel: 0
@@ -75,5 +76,6 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 1, g: 0, b: 0, a: 1}
     - _RimColor: {r: 0, g: 0, b: 1, a: 1}
     - _XRayColor: {r: 0, g: 0.569185, b: 1, a: 1}

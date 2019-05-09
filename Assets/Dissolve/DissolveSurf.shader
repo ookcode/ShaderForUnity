@@ -9,6 +9,10 @@ Shader "DissolveSurf"
         
         _DissolveMap("DissolveMap", 2D) = "white" {}
         _DissolveThreshold("DissolveThreshold", Range(0, 1)) = 0
+        _DissolveColorA("Dissolve Color A", Color) = (0, 0, 0, 0)
+        _DissolveColorB("Dissolve Color B", Color) = (1, 1, 1, 1)
+        _ColorFactorA("ColorFactorA", Range(0, 1)) = 0.7
+        _ColorFactorB("ColorFactorB", Range(0, 1)) = 0.8
 	}
 	SubShader
 	{
@@ -25,6 +29,10 @@ Shader "DissolveSurf"
         sampler2D _DissolveMap;
         float4 _DissolveMap_ST;
         float _DissolveThreshold;
+        float _ColorFactorA;
+        float _ColorFactorB;
+        fixed4 _DissolveColorA;
+        fixed4 _DissolveColorB;
 
         /*
         https://docs.unity3d.com/Manual/SL-SurfaceShaders.html
@@ -70,6 +78,16 @@ Shader "DissolveSurf"
             fixed4 norTex = tex2D(_BumpMap, IN.uv_BumpMap);
             fixed4 spTex = tex2D(_SpecGlossMap, IN.uv_SpecGlossMap);
             o.Albedo = tex.rgb;
+
+            float lerpValue = _DissolveThreshold / dissolveValue.r;
+            if(lerpValue > _ColorFactorA) {
+                if(lerpValue > _ColorFactorB) {
+                    o.Albedo = _DissolveColorB;
+                } else {
+                    o.Albedo = _DissolveColorA;
+                }
+            }
+
             o.Alpha = tex.a;
             o.Normal = UnpackNormal(norTex);
             o.Specular = spTex;
